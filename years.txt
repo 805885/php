@@ -1,0 +1,35 @@
+<?php
+
+
+namespace liw\core;
+
+$data ='1990-01-01';
+
+
+class App
+{
+        public function years($birthday)
+        {
+            // выдел€ем день, мес€ц, год из даты рождени€
+            $bDay = substr($birthday, 8, 2);
+            $bMonth = substr($birthday, 5, 2);
+            $bYear = substr($birthday, 0, 4);
+            // текущие день, мес€ц, год
+            $cDay = date('j');
+            $cMonth = date('n');
+            $cYear = date('Y');
+
+            if(($cMonth > $bMonth) || ($cMonth == $bMonth && $cDay >= $bDay))
+            {
+                return ($cYear - $bYear);
+            } else
+            {
+                return ($cYear - $bYear - 1);
+            }
+        }
+    }
+
+$q = new App();
+$w = $q->years("$data");
+
+echo $w;
